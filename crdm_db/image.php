@@ -60,12 +60,12 @@
                     <div>
                         <label for="record_ids" class="form-label">Select Id :</label>
                         <input type="number" class="form-control" name="record_ids[]" id="record_ids"
-                            autocomplete="off">
+                            autocomplete="off" required>
                     </div>
                     <br>
                     <div>
                         <label for="images" class="form-label">Choose Image :</label>
-                        <input type="file" class="form-control" name="images[]" id="images">
+                        <input type="file" class="form-control" name="images[]" id="images" required>
                     </div>
                     <br>
                     <div class="container mt-3">
