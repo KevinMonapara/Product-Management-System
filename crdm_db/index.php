@@ -13,6 +13,31 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var rememberMeEmail = getCookie('remember_me');
+            var rememberMePass = getCookie('remember_ps');
+            if (rememberMeEmail) {
+                document.getElementById('email').value = decodeURIComponent(rememberMeEmail);
+            }
+            if (rememberMePass) {
+                document.getElementById('password').value = decodeURIComponent(rememberMePass);
+            }
+        });
+
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+    </script>
+
     <style>
         body {
             background-image: url(images/bgimg.jpg);
@@ -48,6 +73,7 @@ session_start();
 
             if (isset($_POST['remember']) && $_POST['remember'] == 'on') {
                 setcookie('remember_me', $email, time() + 86400, "/");
+                setcookie('remember_ps', $password, time() + 86400, "/");
             }
 
         } else {
