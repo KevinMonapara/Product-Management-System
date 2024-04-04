@@ -45,6 +45,11 @@ session_start();
             $_SESSION['valid'] = $row['email'];
             $_SESSION['username'] = $row['username'];
             $_SESSION['id'] = $row['id'];
+
+            if (isset($_POST['remember']) && $_POST['remember'] == 'on') {
+                setcookie('remember_me', $email, time() + 86400, "/");
+            }
+
         } else {
             echo "<div class='container mt-5'>
                          <div class='row'>
@@ -79,6 +84,10 @@ session_start();
                             <div>
                                 <label for="password" class="form-label">Password : </label>
                                 <input type="password" class="form-control" name="pswd" id="password" autocomplete="off">
+                            </div>
+                            <br>
+                            <div>
+                                <input type="checkbox" name="remember"> Remember Me
                             </div>
                             <br>
                             <div>
