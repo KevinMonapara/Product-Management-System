@@ -72,8 +72,8 @@ session_start();
             $_SESSION['id'] = $row['id'];
 
             if (isset($_POST['remember']) && $_POST['remember'] == 'on') {
-                setcookie('remember_me', $email, time() + 86400, "/");
-                setcookie('remember_ps', $password, time() + 86400, "/");
+                setcookie('remember_me', $email, time() + 3600, "/");
+                setcookie('remember_ps', $password, time() + 3600, "/");
             }
 
         } else {
