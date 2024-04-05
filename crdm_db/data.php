@@ -18,16 +18,22 @@
 
     <style>
         body {
-            background-image: url(images/bgimg.jpg);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
         }
-        .table th, .table td {
+
+        .table th,
+        .table td {
             vertical-align: middle;
         }
-        .table img {
-            max-height: 100px;
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .container {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -61,6 +67,12 @@
     $result = $conn->query($sql3);
 
     ?>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Product Management System</a>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="row mt-4">
@@ -109,39 +121,41 @@
         </div>
 
         <div class="m-5 text-center">
-            <h1 style="color: #269cb3; font-weight:700;">●&nbsp;&nbsp; Product Details &nbsp;&nbsp;●</h1>
+            <h1 style="color: #269cb3; font-weight: 700;">Product Details</h1>
         </div>
 
         <table class='table text-center table-primary mb-0'>
-            <th class="col-1"><a class="text-danger text-decoration-none"
+            <th class="col-2"><a class="text-dark text-decoration-none"
                     href="?orderBy=id&order=<?= ($orderBy == 'id' && $order == 'ASC') ? 'DESC' : 'ASC'; ?>">
                     Id</a></th>
-            <th class="col-3"><a class="text-danger text-decoration-none"
+            <th class="col-2"><a class="text-dark text-decoration-none"
                     href="?orderBy=product_name&order=<?= ($orderBy == 'product_name' && $order == 'ASC') ? 'DESC' : 'ASC'; ?>">Name</a>
             </th>
-            <th class="col-3"><a class="text-danger text-decoration-none"
+            <th class="col-2"><a class="text-dark text-decoration-none"
                     href="?orderBy=product_details&order=<?= ($orderBy == 'product_details' && $order == 'ASC') ? 'DESC' : 'ASC'; ?>">Category</a>
             </th>
-            <th class="col-1"><a class="text-danger text-decoration-none"
+            <th class="col-2"><a class="text-dark text-decoration-none"
                     href="?orderBy=product_count&order=<?= ($orderBy == 'product_count' && $order == 'ASC') ? 'DESC' : 'ASC'; ?>">Stock</a>
             </th>
-            <th class="col-2 text-danger">Image</th>
-            <th class="col-2 text-danger">Update & Delete</th>
+            <th class="col-2 text-dark">Image</th>
+            <th class="col-2 text-dark">Update & Delete</th>
         </table>
 
         <?php
+        
         if (!isset($_GET["search"])) {
-
             echo "<table class='table text-center table-hover'>";
             while ($row = $result->fetch_assoc()) {
                 echo "<tr class='container'>";
-                echo "<td class='col-1'>{$row['id']}</td>";
-                echo "<td class='col-3'>{$row['product_name']}</td>";
-                echo "<td class='col-3'>{$row['product_details']}</td>";
-                echo "<td class='col-1'>{$row['product_count']}</td>"; ?>
-                <td class='col-2'> <img src="images/<?php echo $row['image']; ?>" alt="" height="85px" width=100></td>
-                <?php echo "<td class='2'><a href='update.php?name={$row['id']}'><button class='btn btn-success ms-4'><i class='bi bi-pencil-square'></i></button></a></td>"; ?>
-                <?php echo "<td class='2'><a href='delete.php?name={$row['product_name']}'><button class='btn btn-danger me-4'><i class='bi bi-trash3'></i></button></a></td>"; ?>
+                echo "<td class='col-2'>{$row['id']}</td>";
+                echo "<td class='col-2'>{$row['product_name']}</td>";
+                echo "<td class='col-2'>{$row['product_details']}</td>";
+                echo "<td class='col-2'>{$row['product_count']}</td>"; ?>
+                <td class='col-2'> <img src="images/<?php echo $row['image']; ?>" alt="" height="75px" width="90px"></td>
+                <?php echo "<td class='col-2'>
+                <a href='update.php?name={$row['id']}'><button class='btn btn-success'><i class='bi bi-pencil-square'></i></button></a>&nbsp;
+                <a href='delete.php?name={$row['product_name']}'><button class='btn btn-danger'><i class='bi bi-trash3'></i></button></a>
+                </td>"; ?>
                 <?php echo "</tr>";
             }
             echo "</table>";
@@ -153,13 +167,15 @@
             if (mysqli_num_rows($filterdata) > 0) {
                 foreach ($filterdata as $row1) {
                     echo "<tr class='container'>";
-                    echo "<td class='col-1'>{$row1['id']}</td>";
-                    echo "<td class='col-3'>{$row1['product_name']}</td>";
-                    echo "<td class='col-3'>{$row1['product_details']}</td>";
-                    echo "<td class='col-1'>{$row1['product_count']}</td>"; ?>
-                    <td class='col-2'> <img src="images/<?php echo $row1['image']; ?>" alt="" height="85px" width=100></td>
-                    <?php echo "<td class='2'><a href='update.php?name={$row1['id']}'><button class='btn btn-success ms-4'><i class='bi bi-pencil-square'></i></button></a></td>"; ?>
-                    <?php echo "<td class='2'><a href='delete.php?name={$row1['product_name']}'><button class='btn btn-danger me-4'><i class='bi bi-trash3'></i></button></a></td>"; ?>
+                    echo "<td class='col-2'>{$row1['id']}</td>";
+                    echo "<td class='col-2'>{$row1['product_name']}</td>";
+                    echo "<td class='col-2'>{$row1['product_details']}</td>";
+                    echo "<td class='col-2'>{$row1['product_count']}</td>"; ?>
+                    <td class='col-2'> <img src="images/<?php echo $row1['image']; ?>" alt="" height="75px" width="90px"></td>
+                    <?php echo "<td class='col-2'>
+                    <a href='update.php?name={$row1['id']}'><button class='btn btn-success'><i class='bi bi-pencil-square'></i></button></a>&nbsp;
+                    <a href='delete.php?name={$row1['product_name']}'><button class='btn btn-danger'><i class='bi bi-trash3'></i></button></a>
+                    </td>"; ?>
                     <?php echo "</tr>";
                 }
             }
