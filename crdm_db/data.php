@@ -189,7 +189,7 @@
             $total_pages = ceil($row['total'] / $result_per_page);
 
             echo "<br><nav>";
-            echo "<ul class='pagination justify-content-center mb-4'>";
+            echo "<ul class='pagination justify-content-center'>";
             echo " <div class='d-flex'>";
 
             if ($page > 1) {
