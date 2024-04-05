@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    
+
     <script>
         function viewDataPerPage(page) {
             var value = page.value;
@@ -152,8 +152,8 @@
                     echo "<td class='col-3'>{$row1['product_details']}</td>";
                     echo "<td class='col-1'>{$row1['product_count']}</td>"; ?>
                     <td class='col-2'> <img src="images/<?php echo $row1['image']; ?>" alt="" height="85px" width=100></td>
-                    <?php echo "<td class='2'><a href='update.php?name={$row1['id']}'><button class='btn btn-success'>Update</button></a></td>"; ?>
-                    <?php echo "<td class='2'><a href='delete.php?name={$row1['product_name']}'><button class='btn btn-danger'>Delete</button></a></td>"; ?>
+                    <?php echo "<td class='2'><a href='update.php?name={$row1['id']}'><button class='btn btn-success ms-4'><i class='bi bi-pencil-square'></i></button></a></td>"; ?>
+                    <?php echo "<td class='2'><a href='delete.php?name={$row1['product_name']}'><button class='btn btn-danger me-4'><i class='bi bi-trash3'></i></button></a></td>"; ?>
                     <?php echo "</tr>";
                 }
             }
