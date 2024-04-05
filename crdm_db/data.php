@@ -23,6 +23,12 @@
             background-position: center;
             background-attachment: fixed;
         }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .table img {
+            max-height: 100px;
+        }
     </style>
 </head>
 
