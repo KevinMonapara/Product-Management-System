@@ -10,10 +10,8 @@
 
     <style>
         body {
-            background-image: url(images/bgimg.jpg);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
         }
     </style>
 </head>
