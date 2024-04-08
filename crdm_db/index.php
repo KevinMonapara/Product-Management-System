@@ -20,9 +20,11 @@ session_start();
             var rememberMePass = getCookie('remember_ps');
             if (rememberMeEmail) {
                 document.getElementById('email').value = decodeURIComponent(rememberMeEmail);
+                document.getElementById('remember').checked = true;
             }
             if (rememberMePass) {
                 document.getElementById('password').value = decodeURIComponent(rememberMePass);
+                document.getElementById('remember').checked = true;
             }
         });
 
@@ -74,61 +76,53 @@ session_start();
                 setcookie('remember_ps', $password, time() + 60, "/");
             }
 
-        } else {
-            echo "<div class='container mt-5'>
-                         <div class='row'>
-                           <div class='col d-flex justify-content-center'>
-                              <div>
-                                <p>Wrong Username or Password</p>
-                                <a href='index.php'><button class='btn btn-primary'>Go Back</button>
-                              </div>
-                           </div>
-                         </div>
-                      </div>";
-        }
-
-        if (isset($_SESSION['valid'])) {
             header("Location: data.php");
+            exit();
+        } else {
+            $error = "Wrong Username or Password";
         }
-    } else {
+    }
 
-        ?>
+    ?>
 
-        <div class="container">
-            <div class="container mt-5">
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <form action="" id="frm" method="post">
-                            <h2 class="h2 mt-5 mb-4 text-center">Login User</h2>
-                            <div>
-                                <label for="email" class="form-label">Email : </label>
-                                <input type="text" class="form-control" name="email" id="email" autocomplete="off">
+    <div class="container">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <form action="" id="frm" method="post">
+                        <h2 class="h2 mt-5 mb-4 text-center">Login User</h2>
+                        <div>
+                            <label for="email" class="form-label">Email : </label>
+                            <input type="text" class="form-control" name="email" id="email" autocomplete="off">
+                        </div>
+                        <br>
+                        <div>
+                            <label for="password" class="form-label">Password : </label>
+                            <input type="password" class="form-control" name="pswd" id="password" autocomplete="off">
+                        </div>
+                        <br>
+                        <?php if (!empty($error)): ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $error; ?>
                             </div>
-                            <br>
-                            <div>
-                                <label for="password" class="form-label">Password : </label>
-                                <input type="password" class="form-control" name="pswd" id="password" autocomplete="off">
-                            </div>
-                            <br>
-                            <div>
-                                <input type="checkbox" name="remember"> Remember Me
-                            </div>
-                            <br>
-                            <div>
-                                <input type="submit" class="btn btn-primary" name="submit" value="Login" required>
-                            </div>
-                            <br>
-                            <div>
-                                Don't have account? <a href="register.php">Sign Up Now</a>
-                            </div>
-                        </form>
-                        <script src="valid_lfrm.js"></script>
-                    </div>
+                        <?php endif; ?>
+                        <div>
+                            <input type="checkbox" name="remember" id="remember"> Remember Me
+                        </div>
+                        <br>
+                        <div>
+                            <input type="submit" class="btn btn-primary" name="submit" value="Login" required>
+                        </div>
+                        <br>
+                        <div>
+                            Don't have account? <a href="register.php">Sign Up Now</a>
+                        </div>
+                    </form>
+                    <script src="valid_lfrm.js"></script>
                 </div>
             </div>
         </div>
-
-    <?php } ?>
+    </div>
 
 </body>
 
